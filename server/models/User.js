@@ -45,3 +45,6 @@ const mongoose = require('mongoose');
    })
 
     const UserSchema  = mongoose.model('User',User)
+
+
+    module.exports(UserSchema)
