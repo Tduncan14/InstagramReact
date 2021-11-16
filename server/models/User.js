@@ -8,14 +8,14 @@ const mongoose = require('mongoose');
       name:{
           type:String,
           required:true,
-          trim:true
+       
       },
 
       password:{
           type:String,
           required:true,
           trim:true,
-          maxlength:7
+          minlength:7
       },
        
       image:{
@@ -25,26 +25,13 @@ const mongoose = require('mongoose');
       email:{
           type:String,
           required:true,
-          trim:true
+       
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    })
 
-    const UserSchema  = mongoose.model('User',User)
+    const UserSchema  = mongoose.model('users',User)
 
 
-    module.exports(UserSchema)
+    module.exports = UserSchema
