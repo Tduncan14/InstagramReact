@@ -1,47 +1,47 @@
 const express = require('express');
 const User = require('../models/User');
-const bcrypt  = require('bcryptjs')
+const bcrypt  = require('bcrypt')
 
  const router =  express.Router()
 
 
- router.get('/auth', (req,res) => {
+//  router.get('/auth', (req,res) => {
 
 
-    const {name,email,password} = req.body
+//     const {name,email,password} = req.body
  
-    if(!email || !password || !name){
+//     if(!email || !password || !name){
 
-        res.json({error:"please add all the fields"})
+//         res.json({error:"please add all the fields"})
 
-        res.json({message:"successfully"})
-    }
-
-
-    const user = User ;
-
-     user.name = req.body.name;
-     user.email = req.body.email;
-     user.pass = req.body.password;
+//         res.json({message:"successfully"})
+//     }
 
 
-     user.save((err) => {
+//     const user = User ;
 
-        if(err){
-           res.send('data cannot be save')
-        }
-
-
-        res.send(user)
-
-     })
-
-    res.json(user)
+//      user.name = req.body.name;
+//      user.email = req.body.email;
+//      user.pass = req.body.password;
 
 
+//      user.save((err) => {
+
+//         if(err){
+//            res.send('data cannot be save')
+//         }
 
 
- })
+//         res.send(user)
+
+//      })
+
+//     res.json(user)
+
+
+
+
+//  })
 
 
  router.post('/signup',(req,res) => {
@@ -64,6 +64,8 @@ const bcrypt  = require('bcryptjs')
 
             bcrypt.hash(password,12)
              .then(hashedpassword =>{
+
+                req.body.password = hashedpassword
 
 
                 const user = new User(req.body)
@@ -123,6 +125,32 @@ const bcrypt  = require('bcryptjs')
 
 //    await user.save();
      
+
+router.post('/signin', (req,res) => {
+    const {email,password} = req.body
+
+    if(!email || !password){
+         
+        res.status(422).json({error:"please provide email or password"})
+    }
+
+    User.findOne({email:email})
+    .then(savedUser => {
+
+        if(!savedUser){
+           return  res.status(404).json({err:"user not found"})
+        }
+
+        bcrypt.compare(password, savedUser.password)
+        .then(doMatch => {
+            if(doMatch){
+                res.json({message:"success"})
+            }
+        })
+    })
+
+
+})
 
 
  
