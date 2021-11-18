@@ -1,8 +1,14 @@
 const express = require('express');
 const User = require('../models/User');
-const bcrypt  = require('bcrypt')
+const bcrypt  = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const requireSignin = require('../middlewares/requireLogin');
 
  const router =  express.Router()
+
+ require("dotenv").config();
+
+ const secret =  process.env.JWT_SECRET
 
 
 //  router.get('/auth', (req,res) => {
@@ -141,11 +147,30 @@ router.post('/signin', (req,res) => {
            return  res.status(404).json({err:"user not found"})
         }
 
-        bcrypt.compare(password, savedUser.password)
-        .then(doMatch => {
+        console.log(password,savedUser.password , "<====="
+            )
+
+        bcrypt.compare(password, savedUser.password).then(doMatch => {
+             console.log(doMatch,"do match")
             if(doMatch){
-                res.json({message:"success"})
+                // res.json({message:"success"})
+
+                console.log(process.env.JWT_SECRET,"SECRET")
+
+                console.log(savedUser._id,'id')
+
+                const token = jwt.sign({id:savedUser._id},secret)
+
+                console.log() 
+                res.json(token)
             }
+
+            else{
+                return res.status(422).json({error:"Invalid password or Invalid Email hhh"})
+            }
+        })
+        .catch(err => {
+            console.log(err)
         })
     })
 
@@ -153,8 +178,15 @@ router.post('/signin', (req,res) => {
 })
 
 
- 
+//  Making a protected route
 
+
+ 
+router.get('/protected',requireSignin, (req,res)=> {
+
+
+    console.log('you have logged in' )
+})
 
 
  module.exports = router 

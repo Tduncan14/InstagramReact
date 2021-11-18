@@ -15,8 +15,8 @@ const mongoose = require('mongoose');
           type:String,
           required:true,
           trim:true,
-          minlength:7
-      },
+        
+      }, 
        
       image:{
           data:Buffer,
