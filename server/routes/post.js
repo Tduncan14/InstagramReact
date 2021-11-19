@@ -22,8 +22,18 @@ router.post('/createPost',requireLogin,(req,res) => {
     const  post = new Post({
         title:title,
         body,
-        postedBy:new Date()
+        postedBy:req.user
     })
+
+
+    post.save().then(result => {
+
+        res.json({post:result})
+    })
+    .catch(err => {
+        console.log(`err is ${err}`)
+    })
+
 
 })
 
