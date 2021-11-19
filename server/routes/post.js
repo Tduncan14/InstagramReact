@@ -16,7 +16,9 @@ router.post('/createPost',requireLogin,(req,res) => {
     }
 
     console.log(req.user)
-    res.send('ok')
+
+
+    req.user.password = undefined;
 
 
     const  post = new Post({
@@ -28,7 +30,7 @@ router.post('/createPost',requireLogin,(req,res) => {
 
     post.save().then(result => {
 
-        res.json({post:result})
+     res.json({post:result})
     })
     .catch(err => {
         console.log(`err is ${err}`)
