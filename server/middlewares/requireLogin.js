@@ -34,11 +34,12 @@ module.exports = (req,res,next) => {
         User.findById(id).then(userData => {
  
               req.user = userData
+              next()
 
 
         })
 
-        next()
+     
     })
 
 

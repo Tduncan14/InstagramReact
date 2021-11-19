@@ -182,11 +182,11 @@ router.post('/signin', (req,res) => {
 
 
  
-router.get('/protected',requireSignin, (req,res)=> {
+// router.get('/protected',requireSignin, (req,res)=> {
 
 
-    console.log('you have logged in' )
-})
+//     console.log('you have logged in' )
+// })
 
 
  module.exports = router 
