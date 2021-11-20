@@ -5,6 +5,15 @@ const requireLogin = require('../middlewares/requireLogin');
 const router = express.Router()
 
 
+router.get('/getposts',(req,res)=>{
+     
+    Post.find().populate('postedBy','name').select('-_id')
+    .then(posts => res.json({posts:posts}))
+
+  
+})
+
+
 
 
 router.post('/createPost',requireLogin,(req,res) => {
