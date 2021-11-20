@@ -161,8 +161,9 @@ router.post('/signin', (req,res) => {
 
                 const token = jwt.sign({id:savedUser._id},secret)
 
-                console.log() 
-                res.json(token)
+
+              
+                res.json({token})
             }
 
             else{
@@ -182,11 +183,11 @@ router.post('/signin', (req,res) => {
 
 
  
-// router.get('/protected',requireSignin, (req,res)=> {
+router.get('/protected',requireSignin, (req,res)=> {
 
 
-//     console.log('you have logged in' )
-// })
+     console.log('you have logged in' )
+ })
 
 
  module.exports = router 

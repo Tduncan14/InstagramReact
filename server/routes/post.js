@@ -49,6 +49,24 @@ router.post('/createPost',requireLogin,(req,res) => {
 })
 
 
+router.get('/mypost',requireLogin,(req,res) => {
+
+    console.log(req.user.id,'========?')
+,
+
+    Post.find({postedBy:req.user.id}).populate('postedBy',"_id name")
+    .then(mypost => {
+        res.json({mypost:mypost})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+
+
+
+})
+
 
 
 
