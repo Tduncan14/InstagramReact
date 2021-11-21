@@ -49,7 +49,7 @@ router.post('/createPost',requireLogin,(req,res) => {
 })
 
 
-router.get('/mypost',requireLogin,(req,res) => {
+router.get('/mypost',requireLogin ,(req,res) => {
 
     console.log(req.user.id,'========?')
 ,
