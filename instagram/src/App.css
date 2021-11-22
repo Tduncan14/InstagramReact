@@ -9,3 +9,20 @@ a{
   font-family: 'Grand Hotel', cursive;
 }
 
+
+.mycard{
+  margin-top:7%;;
+  
+}
+
+.auth-card{
+  padding:20px;
+  text-align:center;
+  max-width:400px;
+  border:none;
+  margin:10px auto;
+}
+
+.heading1{
+  font-family:'Grand Hotel', cursive; 
+}
