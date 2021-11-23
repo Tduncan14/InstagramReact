@@ -26,3 +26,27 @@ a{
 .heading1{
   font-family:'Grand Hotel', cursive; 
 }
+
+
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+
+}
+
+
+.item{
+  width:30%;
+  margin-bottom:4%
+}
+
+.home{
+
+}
+
+.home-card{
+  max-width:500px;
+  height:max-content;
+  margin: 26px auto;
+}
