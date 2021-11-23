@@ -14,6 +14,7 @@ const Home = () => {
                   </div>
 
                   <div className="card-content">
+                  <i className="material-icons"  style={{color:"red"}}>favorite</i>
                       <h6>title</h6>
                       <p>This is a good post</p>
                       <input type="text" placeholder="add comment"/>
@@ -28,6 +29,7 @@ const Home = () => {
                   </div>
 
                   <div className="card-content">
+                  <i class="material-icons" style={{color:"red"}}>favorite</i>
                       <h6>title</h6>
                       <p>This is a good post</p>
                       <input type="text" placeholder="add comment"/>
