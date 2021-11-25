@@ -83,7 +83,7 @@ const requireSignin = require('../middlewares/requireLogin');
                     }
     
     
-                    res.status(200).json({user})
+                    res.status(200).json({message:"User Created"});
                 })
             }).catch(err =>{
     

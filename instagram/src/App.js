@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
 import './App.css';
-import {BrowserRouter as Router, Route,Routes as Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Signin from './components/Screens/Login';
 import Signup from './components/Screens/Signup';
 import Profile from './components/Screens/Profile';
@@ -13,16 +13,16 @@ function App() {
       <Navbar />
 
   <Switch>
-      <Route path="/" element={<Home/>}/>
+      <Route path="/" component={Home}/>
         
-      <Route path="/signup" element={<Signup/>}/>
+      <Route path="/signup" component={Signup}/>
          
-      <Route path="/signin" element={<Signin/>}/>
+      <Route path="/signin" component={Signin}/>
      
    
-      <Route path="/profile" element={<Profile/>}/>
+      <Route path="/profile" component={Profile}/>
 
-      <Route path="/create" element={<Create/>}/>
+      <Route path="/create" component={Create}/>
     
  
  </Switch>
