@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
-
+import M from 'materialize-css';
 
 
 const Signup = () => {
@@ -13,23 +13,27 @@ const Signup = () => {
 
    const PostData = ()=> {
 
-    fetch("http://localhost:/8000/signup",{
+    fetch("http://localhost:8000/api/signup",{
         method:"post",
         headers:{
             "Content-Type":"application/json"
         },
         body:JSON.stringify({
-            name:"",
-            password:"",
-            email:""
+            name:name,
+            password:password,
+            email:email
 
 
         
         })
     }).then(res => res.json())
-    .then(data=> console.log(data))
-   }
+    .then(data =>{ if(data.error){
+        M.toast({html:data.error})}
 
+    })
+
+   
+}
 
     return (
         <div className="mycard ">
