@@ -22,7 +22,7 @@ app.use('/api',postRouter)
 
 
 
-const PORT =  process.env.PORT || 4000
+const PORT =  process.env.PORT || 8000
 
 
 
