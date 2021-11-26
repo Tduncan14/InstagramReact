@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
 import './App.css';
-import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route,Routes} from 'react-router-dom';
 import Signin from './components/Screens/Login';
 import Signup from './components/Screens/Signup';
 import Profile from './components/Screens/Profile';
@@ -12,20 +12,18 @@ function App() {
     <Router>
       <Navbar />
 
-  <Switch>
-      <Route path="/" component={Home}/>
-        
-      <Route path="/signup" component={Signup}/>
+  <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/signup" element={<Signup/>}/> 
          
-      <Route path="/signin" component={Signin}/>
-     
+      <Route path="/signin" element={<Signin/>}/> 
    
-      <Route path="/profile" component={Profile}/>
+      <Route path="/profile" element={<Profile/>}/>
 
-      <Route path="/create" component={Create}/>
+      <Route path="/create" element={<Create/>}/>
     
  
- </Switch>
+ </Routes>
 
     </Router>
   );
