@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import{Link,useNavigate} from 'react-router-dom'
-import {M} from"materialize-css";
+import M from"materialize-css";
 
 
 const Login = () => {
