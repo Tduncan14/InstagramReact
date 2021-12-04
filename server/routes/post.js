@@ -33,7 +33,9 @@ router.post('/createPost',requireLogin,(req,res) => {
     const  post = new Post({
         title:title,
         body,
-        postedBy:req.user
+        postedBy:req.user,
+        photo
+
     })
 
 

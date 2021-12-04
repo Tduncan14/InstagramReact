@@ -17,6 +17,8 @@ const Login = () => {
 
      const PostData = () => {
 
+        let auth  = localStorage.getItem('auth');
+
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
@@ -38,6 +40,18 @@ const Login = () => {
         }
         else{
             console.log(data,'this is the data')
+
+    
+
+            if(!auth){
+
+                localStorage.setItem('auth',JSON.stringify(data.token))
+
+
+
+            }
+
+
             M.toast({html:"signed successful",classes:"green darken-1"})
             navigate('/')
         } })

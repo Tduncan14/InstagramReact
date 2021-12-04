@@ -1,5 +1,5 @@
 
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 
 const CreatePost = () => {
 
@@ -7,22 +7,80 @@ const CreatePost = () => {
     const [title,setTitle] = useState("");
     const[body,setBody] = useState("");
     const[image,setImage]= useState("");
+    const[auth,setAuth] = useState("");
+
+
+    const postDetails = () => {
+
+        const data = new FormData()
+        data.append('file',image)
+        data.append('upload_preset','insta-clone')
+        data.append('cloud_name','treek')
+
+
+        fetch('https://api.cloudinary.com/v1_1/treek/image/upload',{
+
+          method:"post",
+          body:data
+
+
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data)
+        })
+        .catch(err => console.log(err))
+
+
+
+
+
+
+    }
+
+    // useEffect(( ) => {
+
+
+    //     if(!auth){
+    //         setAuth(localStorage.getItem('auth'));
+            
+    //     }
+
+    //     console.log(auth);
+
+    // },[])
+
 
 
      const handleSubmit = (e) => {
 
         e.preventDefault();
 
+        let token = localStorage.getItem('auth')
+
         const newPost = new FormData();
 
 
         newPost.append('title',title);
         newPost.append('body',body);
-        image && newPost.append('image',image)
+        image && newPost.append('photo',image)
 
 
         console.log([...newPost,"postgit"])
         console.log(image,title,body)
+        
+ 
+        fetch('http://localhost:8000/api/createPost',{
+            method:'post',
+            headers:{'Authorization': `Bearer ${token}`},
+            body:newPost
+        })
+        .then((res) => res.json())
+        .then(data =>{
+
+            console.log(data)
+        })
+        .catch(err => console.log(err))
 
 
      }
@@ -59,7 +117,7 @@ const CreatePost = () => {
                 </div>
             </div>
 
-            <button onClick={handleSubmit}className="btn waves-effect waves-light #64b5f6 blue darken-1">Post</button>
+            <button onClick={postDetails}className="btn waves-effect waves-light #64b5f6 blue darken-1">Post</button>
 
         </div>
     )
