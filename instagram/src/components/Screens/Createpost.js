@@ -1,5 +1,8 @@
 
 import React,{useState,useEffect} from 'react';
+import{Link,useNavigate} from 'react-router-dom'
+import M from"materialize-css";
+
 
 const CreatePost = () => {
 
@@ -9,6 +12,8 @@ const CreatePost = () => {
     const[image,setImage]= useState("");
     const[auth,setAuth] = useState("");
     const[url,setUrl] = useState("")
+
+    const Navigate = useNavigate()
 
 
     const postDetails = () => {
@@ -32,8 +37,10 @@ const CreatePost = () => {
         })
         .catch(err => console.log(err))
 
+         
+         console.log('what')
 
-           fetch('/createpost',{
+           fetch('http://localhost:8000/api/createPost',{
                method:"post",
                headers:{
                    "Content-Type":"application/json"
@@ -44,6 +51,22 @@ const CreatePost = () => {
                    pic:url
 
                })
+
+
+           }).then(res => res.json())
+           .then(data =>{
+
+            if(data.error){
+                M.toast({html:data.error, classes:"red darken-3"})
+            }
+
+            else{
+                M.toast({html:'create posted successfully'})
+                Navigate('/profile')
+            }
+
+
+
 
 
            })
