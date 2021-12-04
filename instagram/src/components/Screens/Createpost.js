@@ -8,6 +8,7 @@ const CreatePost = () => {
     const[body,setBody] = useState("");
     const[image,setImage]= useState("");
     const[auth,setAuth] = useState("");
+    const[url,setUrl] = useState("")
 
 
     const postDetails = () => {
@@ -32,6 +33,20 @@ const CreatePost = () => {
         .catch(err => console.log(err))
 
 
+           fetch('/createpost',{
+               method:"post",
+               headers:{
+                   "Content-Type":"application/json"
+               },
+               body:JSON.stringify({
+                   title,
+                   body:body,
+                   pic:url
+
+               })
+
+
+           })
 
 
 
