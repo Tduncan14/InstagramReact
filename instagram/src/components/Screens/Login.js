@@ -36,22 +36,13 @@ const Login = () => {
           })
         }).then(res => res.json())
         .then(data => {if(data.error){
-            M.toast({html:data.error,classes:'red'})
+            M.toast({html:data.error,classes:'red darken-3'})
         }
         else{
-            console.log(data,'this is the data')
+            console.log(data,'this is the data');
 
-    
-
-            if(!auth){
-
-                localStorage.setItem('auth',JSON.stringify(data.token))
-
-
-
-            }
-
-
+           localStorage.setItem('jwt',data.token)
+           localStorage.setItem('user',JSON.stringify(data.user))
             M.toast({html:"signed successful",classes:"green darken-1"})
             navigate('/')
         } })
