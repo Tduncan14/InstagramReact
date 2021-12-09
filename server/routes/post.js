@@ -24,10 +24,8 @@ router.post('/createPost',requireLogin,(req,res) => {
         res.status(422).json({error:'Please add all the fields'})
     }
 
-    console.log(req.user)
 
-
-    req.user.password = undefined;
+    // req.user.password = undefined;
 
 
     const  post = new Post({

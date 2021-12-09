@@ -16,6 +16,37 @@ const CreatePost = () => {
     const Navigate = useNavigate()
 
 
+    useEffect(()=>{
+        if(url){
+            fetch("http://localhost:8000/api/createPost",{
+                method:"post",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"Bearer "+localStorage.getItem("jwt")
+                },
+                body:JSON.stringify({
+                    title,
+                    body,
+                    pic:url
+                })
+            }).then(res=>res.json())
+            .then(data=>{
+        
+               if(data.error){
+                  M.toast({html: data.error,classes:"#c62828 red darken-3"})
+               }
+               else{
+                   M.toast({html:"Created post Successfully",classes:"#43a047 green darken-1"})
+                   Navigate('/profile')
+               }
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+
+    }
+    ,[url])
+
     const postDetails = () => {
 
         const data = new FormData()
@@ -33,43 +64,14 @@ const CreatePost = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            console.log(data)
+            
+            setUrl(data.url)
+            console.log(url)
         })
         .catch(err => console.log(err))
 
          
-         console.log('what')
-
-           fetch('http://localhost:8000/api/createPost',{
-               method:"post",
-               headers:{
-                   "Content-Type":"application/json"
-               },
-               body:JSON.stringify({
-                   title,
-                   body:body,
-                   pic:url
-
-               })
-
-
-           }).then(res => res.json())
-           .then(data =>{
-
-            if(data.error){
-                M.toast({html:data.error, classes:"red darken-3"})
-            }
-
-            else{
-                M.toast({html:'create posted successfully'})
-                Navigate('/profile')
-            }
-
-
-
-
-
-           })
+      
 
 
 
