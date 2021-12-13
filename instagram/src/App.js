@@ -11,7 +11,7 @@ import {reducer,intialState} from './reducers/userReducer'
 
 
 
-const Usercontext = createContext()
+export const Usercontext = createContext()
 
 
 const Routing = () =>{
