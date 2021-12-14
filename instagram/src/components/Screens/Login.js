@@ -1,12 +1,13 @@
 import React,{useState,useContext} from 'react'
 import{Link,useNavigate} from 'react-router-dom'
 import M from"materialize-css";
+import { reducer } from '../../reducers/userReducer';
 import { Usercontext } from '../../App';
 
 
 const Login = () => {
 
-    const [state,dispatch] = useContext(Usercontext)
+    const {state,dispatch}= useContext(Usercontext)
 
 
     const navigate = useNavigate();

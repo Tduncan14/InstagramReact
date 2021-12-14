@@ -1,4 +1,4 @@
-import React,{createContext,useReducer} from 'react';
+import React,{createContext,useContext,useEffect,useReducer} from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 import {BrowserRouter as Router, Route,Routes,useNavigate} from 'react-router-dom';
@@ -14,9 +14,27 @@ import {reducer,intialState} from './reducers/userReducer'
 export const Usercontext = createContext()
 
 
+
+
+
 const Routing = () =>{
 
   const history = useNavigate()
+  const{state,dispatch} = useContext(Usercontext)
+
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("user"))
+  
+    if(user){
+      history('/')
+    }
+
+    else{
+      history('/signin')
+    }
+  
+  },[])
+
 
   return(
     <>
@@ -45,7 +63,7 @@ function App() {
 
 
   return (
-    <Usercontext.Provider value={state}>
+    <Usercontext.Provider value={{state,dispatch}}>
     <Router>
       <Navbar />
 
