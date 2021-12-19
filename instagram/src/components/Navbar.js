@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import {Usercontext} from '../App'
 
 const Navbar = () => {
@@ -9,10 +9,11 @@ const Navbar = () => {
    const {state,dispatch} = useContext(Usercontext);
    const[user,setuser] = useState(localStorage.getItem('user'))
 
-
+   const navigate = useNavigate()
 
    const renderList = () => {
 
+    console.log(user,'this is the user')
     
   
 
@@ -25,6 +26,19 @@ const Navbar = () => {
          <>
           <li><Link to="/profile">Profile</Link></li>
           <li><Link to="/create">Create</Link></li>
+          <button className="btn waves-effect waves-light blue darken"
+
+          onClick={()=>{
+            localStorage.clear();
+            dispatch({type:'CLEAR'})
+            navigate('/signin')
+          }}
+          
+          >
+
+             LOGOUT
+
+          </button>
           </>
         ]
       }
