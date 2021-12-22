@@ -8,7 +8,8 @@ import Profile from './components/Screens/Profile';
 import Home from './components/Screens/Home';
 import Create from './components/Screens/Createpost';
 import {reducer,intialState} from './reducers/userReducer'
-
+// import { Provider } from 'react-redux'
+// import { createStore } from 'redux'
 
 
 export const Usercontext = createContext()
@@ -22,10 +23,14 @@ const Routing = () =>{
   const history = useNavigate()
   const{state,dispatch} = useContext(Usercontext)
 
+
+  console.log(state,"this a state")
+
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("user"))
   
     if(user){
+      dispatch({type:'USER',payload:user})
       history('/')
     }
 

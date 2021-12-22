@@ -67,7 +67,13 @@ router.get('/mypost',requireLogin ,(req,res) => {
 
 })
 
+ router.put('/like', requireLogin,(req,res) => {
 
+     Post.findByIdAndUpdate(req.body.postId)
+
+
+
+ })
 
 module.exports = router;
 
