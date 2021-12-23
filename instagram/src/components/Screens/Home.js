@@ -44,6 +44,8 @@ const Home = () => {
 
                   <div className="card-content">
                   <i className="material-icons"  style={{color:"red"}}>favorite</i>
+                  <i className="material-icons">thumb_up</i>
+                      <h6>{item.likes.length}likes </h6>
                       <h6>{item.title}</h6>
                       <p>{item.body}</p>
                       <input type="text" placeholder="add comment"/>
